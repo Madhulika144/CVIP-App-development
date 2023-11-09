@@ -1,7 +1,7 @@
 import tkinter as tk
 import sqlite3
 
-# Create a connection to the databaset
+# Create a connection to the database
 conn = sqlite3.connect('todo.db')
 cursor = conn.cursor()
 
@@ -57,3 +57,4 @@ update_listbox()
 root.mainloop()
 
 conn.close()
+
