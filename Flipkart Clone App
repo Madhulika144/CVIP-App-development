@@ -1,0 +1,38 @@
+pip install kivy
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+
+
+class Product:
+    def __init__(self, name, description, price):
+        self.name = name
+        self.description = description
+        self.price = price
+
+
+class ProductListScreen(BoxLayout):
+    def __init__(self, products, **kwargs):
+        super(ProductListScreen, self).__init__(**kwargs)
+        self.orientation = 'vertical'
+        for product in products:
+            product_layout = BoxLayout(orientation='vertical')
+            product_layout.add_widget(Label(text=product.name))
+            product_layout.add_widget(Label(text=product.description))
+            product_layout.add_widget(Label(text=f"Price: ${product.price}"))
+            self.add_widget(product_layout)
+
+
+class MyApp(App):
+    def build(self):
+        products = [
+            Product("Product 1", "Description for Product 1", 100),
+            Product("Product 2", "Description for Product 2", 150),
+            Product("Product 3", "Description for Product 3", 200),
+        ]
+        return ProductListScreen(products)
+
+
+if __name__ == '__main__':
+    MyApp().run()
